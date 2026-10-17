@@ -258,6 +258,47 @@ class TestCalculator(unittest.TestCase):
         calc = Calculator()
         self.assertEqual(calc.modulo(5.5, 2.0), 1.5)
 
+    def test_power_positive_integer_exponent(self):
+        calc = Calculator()
+        self.assertEqual(calc.power(2, 3), 8)
+
+    def test_power_zero_exponent(self):
+        calc = Calculator()
+        self.assertEqual(calc.power(5, 0), 1)
+
+    def test_power_negative_base_odd_exponent(self):
+        calc = Calculator()
+        self.assertEqual(calc.power(-2, 3), -8)
+
+    def test_power_negative_base_even_exponent(self):
+        calc = Calculator()
+        self.assertEqual(calc.power(-2, 4), 16)
+
+    def test_power_negative_exponent(self):
+        calc = Calculator()
+        self.assertEqual(calc.power(2, -3), 0.125)
+
+    def test_power_zero_to_zero(self):
+        calc = Calculator()
+        self.assertEqual(calc.power(0, 0), 1)
+
+    def test_power_zero_to_negative(self):
+        calc = Calculator()
+        with self.assertRaises(ZeroDivisionError):
+            calc.power(0, -1)
+
+    def test_power_fractional_exponent(self):
+        calc = Calculator()
+        self.assertAlmostEqual(calc.power(9, 0.5), 3.0)
+
+    def test_power_zero_base_positive_exponent(self):
+        calc = Calculator()
+        self.assertEqual(calc.power(0, 3), 0)
+
+    def test_power_exponent_one(self):
+        calc = Calculator()
+        self.assertEqual(calc.power(2, 1), 2)
+
 
 if __name__ == "__main__":
     unittest.main()
