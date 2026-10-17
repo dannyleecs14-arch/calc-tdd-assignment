@@ -220,6 +220,44 @@ class TestCalculator(unittest.TestCase):
         with self.assertRaises(ZeroDivisionError):
             calc.divide(5, 0)
 
+    def test_modulo_positive(self):
+        calc = Calculator()
+        self.assertEqual(calc.modulo(10, 3), 1)
+
+    def test_modulo_negative_dividend(self):
+        calc = Calculator()
+        self.assertEqual(calc.modulo(-10, 3), 2)
+
+    def test_modulo_negative_divisor(self):
+        calc = Calculator()
+        self.assertEqual(calc.modulo(10, -3), -2)
+
+    def test_modulo_two_negatives(self):
+        calc = Calculator()
+        self.assertEqual(calc.modulo(-10, -3), -1)
+
+    def test_modulo_zero_dividend(self):
+        calc = Calculator()
+        self.assertEqual(calc.modulo(0, 5), 0)
+
+    def test_modulo_by_zero(self):
+        calc = Calculator()
+        with self.assertRaises(ZeroDivisionError):
+            calc.modulo(5, 0)
+
+    def test_modulo_zero_negative_divisor(self):
+        calc = Calculator()
+        self.assertEqual(calc.modulo(0, -5), 0)
+
+    def test_modulo_zero_by_zero(self):
+        calc = Calculator()
+        with self.assertRaises(ZeroDivisionError):
+            calc.modulo(0, 0)
+
+    def test_modulo_floats(self):
+        calc = Calculator()
+        self.assertEqual(calc.modulo(5.5, 2.0), 1.5)
+
 
 if __name__ == "__main__":
     unittest.main()
