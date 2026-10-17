@@ -155,6 +155,71 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(result, 1000000000)
 
 
+    # 1. 正整數整除
+    def test_divide_positive(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(10, 2), 5.0)
+
+    # 2. 除不盡，產生小數
+    def test_divide_fraction(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(7, 2), 3.5)
+
+    # 3. 小於一的結果
+    def test_divide_less_than_one(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(1, 4), 0.25)
+
+    # 4. 零除以非零數
+    def test_divide_zero_numerator(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(0, 5), 0.0)
+
+    # 5. 負數除以正數
+    def test_divide_negative_positive(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(-10, 2), -5.0)
+
+    # 6. 正數除以負數
+    def test_divide_positive_negative(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(10, -2), -5.0)
+
+    # 7. 負數除以負數
+    def test_divide_two_negatives(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(-10, -2), 5.0)
+
+    # 8. 除以一
+    def test_divide_by_one(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(5, 1), 5.0)
+
+    # 9. 浮點數除法
+    def test_divide_floats(self):
+        calc = Calculator()
+        self.assertEqual(calc.divide(2.5, 0.5), 5.0)
+
+    # 10. 循環小數
+    def test_divide_repeating_decimal(self):
+        calc = Calculator()
+        self.assertAlmostEqual(
+            calc.divide(1, 3), 1 / 3
+        )
+
+    # 11. 大數除法
+    def test_divide_large_number(self):
+        calc = Calculator()
+        self.assertEqual(
+            calc.divide(1000000, 1000), 1000.0
+        )
+
+    # 12. 除以零應拋出例外
+    def test_divide_by_zero(self):
+        calc = Calculator()
+        with self.assertRaises(ZeroDivisionError):
+            calc.divide(5, 0)
+
 
 if __name__ == "__main__":
     unittest.main()
