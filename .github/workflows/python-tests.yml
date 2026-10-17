@@ -3,9 +3,9 @@ name: Python unittest CI
 
 on:
   push:
-    branches: [Q2]
+    branches: [Q2, Q2-agent]
   pull_request:
-    branches: [Q2]
+    branches: [Q2, Q2-agent]
   workflow_dispatch:
 
 permissions:
