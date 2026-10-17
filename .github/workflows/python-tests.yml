@@ -1,15 +1,12 @@
 
-name: Python unittest CI
+name: Python Tests and Quality Checks
 
 on:
   push:
-    branches: [Q2, Q2-agent]
+    branches: [Q2, Q2-agent, Q3]
   pull_request:
-    branches: [Q2, Q2-agent]
+    branches: [Q2, Q2-agent, Q3]
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 jobs:
   unittest:
@@ -19,10 +16,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up Python 3.14
+      - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.14'
 
-      - name: Run unittest
+      - name: Install verification tools
+        run: python -m pip install coverage ruff
+
+      - name: Run unit tests
         run: python -m unittest CalcTest -v
+
+      - name: Collect code coverage
+        run: python -m coverage run --source=Calc -m unittest CalcTest -v
+
+      - name: Show coverage report
+        run: python -m coverage report -m
+
+      - name: Run Ruff static analysis
+        run: python -m ruff check Calc.py CalcTest.py
