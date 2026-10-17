@@ -9,4 +9,6 @@ class Calculator:
         if b == 0:
             raise ZeroDivisionError ("divide by zero")
         return a / b
+    def modulo(self, a, b):
+        return a % b
 
