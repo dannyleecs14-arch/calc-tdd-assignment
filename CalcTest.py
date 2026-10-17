@@ -82,5 +82,79 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(result, 1)
 
 
+    # 1. 一般正整數乘法
+    def test_multiply_positive(self):
+        calc = Calculator()
+        result = calc.multiply(5, 2)
+        self.assertEqual(result, 10)
+
+    # 2. 正數乘以零
+    def test_multiply_by_zero(self):
+        calc = Calculator()
+        result = calc.multiply(5, 0)
+        self.assertEqual(result, 0)
+
+    # 3. 零乘以正數
+    def test_multiply_zero_first(self):
+        calc = Calculator()
+        result = calc.multiply(0, 5)
+        self.assertEqual(result, 0)
+
+    # 4. 零乘以零
+    def test_multiply_zero_zero(self):
+        calc = Calculator()
+        result = calc.multiply(0, 0)
+        self.assertEqual(result, 0)
+
+    # 5. 正數乘以一
+    def test_multiply_by_one(self):
+        calc = Calculator()
+        result = calc.multiply(5, 1)
+        self.assertEqual(result, 5)
+
+    # 6. 正數乘負數
+    def test_multiply_positive_negative(self):
+        calc = Calculator()
+        result = calc.multiply(5, -2)
+        self.assertEqual(result, -10)
+
+    # 7. 負數乘正數
+    def test_multiply_negative_positive(self):
+        calc = Calculator()
+        result = calc.multiply(-5, 2)
+        self.assertEqual(result, -10)
+
+    # 8. 負數乘負數
+    def test_multiply_two_negatives(self):
+        calc = Calculator()
+        result = calc.multiply(-5, -2)
+        self.assertEqual(result, 10)
+
+    # 9. 交換乘數順序
+    def test_multiply_reversed(self):
+        calc = Calculator()
+        result = calc.multiply(2, 5)
+        self.assertEqual(result, 10)
+
+    # 10. 小數乘以整數
+    def test_multiply_float(self):
+        calc = Calculator()
+        result = calc.multiply(2.5, 2)
+        self.assertEqual(result, 5.0)
+
+    # 11. 小數乘以小數
+    def test_multiply_two_floats(self):
+        calc = Calculator()
+        result = calc.multiply(1.5, 0.5)
+        self.assertEqual(result, 0.75)
+
+    # 12. 較大整數乘法
+    def test_multiply_large_number(self):
+        calc = Calculator()
+        result = calc.multiply(1000000, 1000)
+        self.assertEqual(result, 1000000000)
+
+
+
 if __name__ == "__main__":
     unittest.main()
